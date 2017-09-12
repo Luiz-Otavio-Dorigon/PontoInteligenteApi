@@ -38,7 +38,7 @@ public class EmpresaControllerTest {
     @MockBean
     private EmpresaService mEmpresaService;
 
-    private static final String URL_FIND_COMPANY_CNPJ = "/api/empresa/cnpj/";
+    private static final String URL_FIND_COMPANY_CNPJ = "/api/empresas/cnpj/";
     private static final Long ID = 1L;
     private static final String CNPJ = "61237293000110";
     private static final String RAZAO_SOCIAL = "Empresa Teste XYZ";
