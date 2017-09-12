@@ -25,7 +25,7 @@ import java.util.Optional;
  */
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/pessoaFisica")
+@RequestMapping("/api/pessoas/fisica")
 public class PessoaFisicaController {
 
     @Autowired

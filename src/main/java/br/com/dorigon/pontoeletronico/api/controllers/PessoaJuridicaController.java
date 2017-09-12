@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
  */
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/pessoaJuridica")
+@RequestMapping("/api/pessoas/juridica")
 public class PessoaJuridicaController {
 
     @Autowired
