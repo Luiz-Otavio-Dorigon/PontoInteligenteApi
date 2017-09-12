@@ -34,7 +34,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 
     @Override
     public Lancamento save(Lancamento lancamento) {
-        DebugUtils.log("Saving release " + lancamento.getTipo().name() + " - " + lancamento.getDescricao());
+        DebugUtils.log("Saving release " + lancamento.getTipo() + " - " + lancamento.getDescricao());
         return mLancamentoRepository.save(lancamento);
     }
 

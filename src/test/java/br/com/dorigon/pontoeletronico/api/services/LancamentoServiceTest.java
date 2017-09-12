@@ -25,45 +25,45 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Luiz Otávio Dorigon <luiz.otavio.dorigon@gmail.com>  on 11/09/17.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
+@RunWith(SpringRunner.class)
 public class LancamentoServiceTest {
 
     @MockBean
-    private LancamentoRepository lancamentoRepository;
+    private LancamentoRepository mLancamentoRepository;
 
     @Autowired
-    private LancamentoService lancamentoService;
+    private LancamentoService mLancamentoService;
 
     @Before
     public void setUp() throws Exception {
         BDDMockito
-                .given(this.lancamentoRepository.findByFuncionarioId(Mockito.anyLong(), Mockito.any(PageRequest.class)))
+                .given(this.mLancamentoRepository.findByFuncionarioId(Mockito.anyLong(), Mockito.any(PageRequest.class)))
                 .willReturn(new PageImpl<Lancamento>(new ArrayList<Lancamento>()));
-        BDDMockito.given(this.lancamentoRepository.findOne(Mockito.anyLong())).willReturn(new Lancamento());
-        BDDMockito.given(this.lancamentoRepository.save(Mockito.any(Lancamento.class))).willReturn(new Lancamento());
+        BDDMockito.given(this.mLancamentoRepository.findOne(Mockito.anyLong())).willReturn(new Lancamento());
+        BDDMockito.given(this.mLancamentoRepository.save(Mockito.any(Lancamento.class))).willReturn(new Lancamento());
+    }
+
+    @Test
+    public void testPersistirLancamento() {
+        Lancamento lancamento = this.mLancamentoService.save(new Lancamento());
+
+        assertNotNull(lancamento);
     }
 
     @Test
     public void testBuscarLancamentoPorFuncionarioId() {
-        Page<Lancamento> lancamento = this.lancamentoService.findByEmployeeId(1L, new PageRequest(0, 10));
+        Page<Lancamento> lancamento = this.mLancamentoService.findByEmployeeId(1L, new PageRequest(0, 10));
 
         assertNotNull(lancamento);
     }
 
     @Test
     public void testBuscarLancamentoPorId() {
-        Optional<Lancamento> lancamento = this.lancamentoService.findById(1L);
+        Optional<Lancamento> lancamento = this.mLancamentoService.findById(1L);
 
         assertTrue(lancamento.isPresent());
-    }
-
-    @Test
-    public void testPersistirLancamento() {
-        Lancamento lancamento = this.lancamentoService.save(new Lancamento());
-
-        assertNotNull(lancamento);
     }
 
 }

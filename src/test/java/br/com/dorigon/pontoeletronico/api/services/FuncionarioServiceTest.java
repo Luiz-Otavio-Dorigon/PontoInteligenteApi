@@ -27,43 +27,43 @@ import static org.junit.Assert.assertTrue;
 public class FuncionarioServiceTest {
 
     @MockBean
-    private FuncionarioRepository funcionarioRepository;
+    private FuncionarioRepository mFuncionarioRepository;
 
     @Autowired
-    private FuncionarioService funcionarioService;
+    private FuncionarioService mFuncionarioService;
 
     @Before
     public void setUp() throws Exception {
-        BDDMockito.given(this.funcionarioRepository.save(Mockito.any(Funcionario.class))).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findOne(Mockito.anyLong())).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findByEmail(Mockito.anyString())).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findByCpf(Mockito.anyString())).willReturn(new Funcionario());
+        BDDMockito.given(this.mFuncionarioRepository.save(Mockito.any(Funcionario.class))).willReturn(new Funcionario());
+        BDDMockito.given(this.mFuncionarioRepository.findOne(Mockito.anyLong())).willReturn(new Funcionario());
+        BDDMockito.given(this.mFuncionarioRepository.findByEmail(Mockito.anyString())).willReturn(new Funcionario());
+        BDDMockito.given(this.mFuncionarioRepository.findByCpf(Mockito.anyString())).willReturn(new Funcionario());
     }
 
     @Test
     public void testPersistirFuncionario() {
-        Funcionario funcionario = this.funcionarioService.save(new Funcionario());
+        Funcionario funcionario = this.mFuncionarioService.save(new Funcionario());
 
         assertNotNull(funcionario);
     }
 
     @Test
     public void testBuscarFuncionarioPorId() {
-        Optional<Funcionario> funcionario = this.funcionarioService.findById(1L);
+        Optional<Funcionario> funcionario = this.mFuncionarioService.findById(1L);
 
         assertTrue(funcionario.isPresent());
     }
 
     @Test
     public void testBuscarFuncionarioPorEmail() {
-        Optional<Funcionario> funcionario = this.funcionarioService.findByEmail("email@email.com");
+        Optional<Funcionario> funcionario = this.mFuncionarioService.findByEmail("email@email.com");
 
         assertTrue(funcionario.isPresent());
     }
 
     @Test
     public void testBuscarFuncionarioPorCpf() {
-        Optional<Funcionario> funcionario = this.funcionarioService.findByCpf("24291173474");
+        Optional<Funcionario> funcionario = this.mFuncionarioService.findByCpf("24291173474");
 
         assertTrue(funcionario.isPresent());
     }
