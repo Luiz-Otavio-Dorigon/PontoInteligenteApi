@@ -5,6 +5,8 @@ import br.com.dorigon.pontoeletronico.api.repositories.LancamentoRepository;
 import br.com.dorigon.pontoeletronico.api.services.LancamentoService;
 import br.com.dorigon.pontoeletronico.api.utils.DebugUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -27,12 +29,14 @@ public class LancamentoServiceImpl implements LancamentoService {
     }
 
     @Override
+    @Cacheable("lancamentoPorId")
     public Optional<Lancamento> findById(Long id) {
         DebugUtils.log("Get employee by ID [" + id + "]");
         return Optional.ofNullable(mLancamentoRepository.findOne(id));
     }
 
     @Override
+    @CachePut("lancamentoPorId")
     public Lancamento save(Lancamento lancamento) {
         DebugUtils.log("Saving release " + lancamento.getTipo() + " - " + lancamento.getDescricao());
         return mLancamentoRepository.save(lancamento);
