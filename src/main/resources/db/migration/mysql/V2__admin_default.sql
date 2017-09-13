@@ -1,0 +1,2 @@
+INSERT INTO `empresa` (`cnpj`, `razao_social`, `data_alteracao`, `data_cadastro`) VALUES ('00545339000173', 'Dorigon Sistemas Inteligentes ME', CURRENT_DATE(), CURRENT_DATE());
+INSERT INTO `funcionario` (`cpf`, `nome`, `email`, `senha`, `perfil`, `data_alteracao`, `data_cadastro`, `empresa_id`) VALUES ('08318799984', 'Luiz Otávio Dorigon', 'admin@dorigon.com.br', '$2a$10$I1Yil/VtogCUORSAxEt5vuBFOXqNtoR0nZHe5BIHuTiy9wYiFElV2', 'ROLE_ADMIN', CURRENT_DATE(), CURRENT_DATE(), (SELECT id FROM `empresa` WHERE `cnpj` = '00545339000173'));
