@@ -13,11 +13,11 @@ public final class DebugUtils {
     private DebugUtils() {
     }
 
-    public static void log(Class<Object> clazz, String message, Exception e) {
+    public static void log(Class<?> clazz, String message, Exception e) {
         Logger.getLogger(clazz.getSimpleName()).log(Level.SEVERE, message, e);
     }
 
-    public static void log(Class<Object> clazz, String message) {
+    public static void log(Class<?> clazz, String message) {
         Logger.getLogger(clazz.getSimpleName()).log(Level.INFO, message);
     }
 
