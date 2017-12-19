@@ -76,18 +76,15 @@ public class FuncionarioController {
         funcionario.setNome(funcionarioDto.getNome());
 
         if (!funcionario.getEmail().equals(funcionarioDto.getEmail())) {
-            this.mFuncionarioService.findByEmail(funcionarioDto.getEmail())
-                    .ifPresent(func -> result.addError(new ObjectError("email", "Email já existente.")));
+            this.mFuncionarioService.findByEmail(funcionarioDto.getEmail()).ifPresent(func -> result.addError(new ObjectError("email", "Email já existente.")));
             funcionario.setEmail(funcionarioDto.getEmail());
         }
 
         funcionario.setQtdHorasAlmoco(null);
-        funcionarioDto.getQtdHorasAlmoco()
-                .ifPresent(qtdHorasAlmoco -> funcionario.setQtdHorasAlmoco(Float.valueOf(qtdHorasAlmoco)));
+        funcionarioDto.getQtdHorasAlmoco().ifPresent(qtdHorasAlmoco -> funcionario.setQtdHorasAlmoco(Float.valueOf(qtdHorasAlmoco)));
 
         funcionario.setQtdHorasTrabalhoDia(null);
-        funcionarioDto.getQtdHorasTrabalhoDia()
-                .ifPresent(qtdHorasTrabDia -> funcionario.setQtdHorasTrabalhoDia(Float.valueOf(qtdHorasTrabDia)));
+        funcionarioDto.getQtdHorasTrabalhoDia().ifPresent(qtdHorasTrabDia -> funcionario.setQtdHorasTrabalhoDia(Float.valueOf(qtdHorasTrabDia)));
 
         funcionario.setValorHora(null);
         funcionarioDto.getValorHora().ifPresent(valorHora -> funcionario.setValorHora(new BigDecimal(valorHora)));
@@ -108,12 +105,9 @@ public class FuncionarioController {
         funcionarioDto.setId(funcionario.getId());
         funcionarioDto.setEmail(funcionario.getEmail());
         funcionarioDto.setNome(funcionario.getNome());
-        funcionario.getQtdHorasAlmocoOpt().ifPresent(
-                qtdHorasAlmoco -> funcionarioDto.setQtdHorasAlmoco(Optional.of(Float.toString(qtdHorasAlmoco))));
-        funcionario.getQtdHorasTrabalhoDiaOpt().ifPresent(
-                qtdHorasTrabDia -> funcionarioDto.setQtdHorasTrabalhoDia(Optional.of(Float.toString(qtdHorasTrabDia))));
-        funcionario.getValorHoraOpt()
-                .ifPresent(valorHora -> funcionarioDto.setValorHora(Optional.of(valorHora.toString())));
+        funcionario.getQtdHorasAlmocoOpt().ifPresent(qtdHorasAlmoco -> funcionarioDto.setQtdHorasAlmoco(Optional.of(Float.toString(qtdHorasAlmoco))));
+        funcionario.getQtdHorasTrabalhoDiaOpt().ifPresent(qtdHorasTrabDia -> funcionarioDto.setQtdHorasTrabalhoDia(Optional.of(Float.toString(qtdHorasTrabDia))));
+        funcionario.getValorHoraOpt().ifPresent(valorHora -> funcionarioDto.setValorHora(Optional.of(valorHora.toString())));
 
         return funcionarioDto;
     }
